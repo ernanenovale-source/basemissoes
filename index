@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quero Servir — Eklésia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #c0272d;
+      --red-dark: #8b1a1e;
+      --gray-bg: #f0eeeb;
+      --white: #ffffff;
+      --text: #1a1a1a;
+      --muted: #777;
+      --border: #e0dbd4;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--gray-bg);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* HERO */
+    .hero {
+      width: 100%;
+      max-width: 600px;
+      background: #e8e5e0;
+      position: relative;
+      overflow: hidden;
+      min-height: 240px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 32px 42px;
+    }
+
+    .hero-cross {
+      position: absolute;
+      right: -10px;
+      top: 0;
+      bottom: 0;
+      width: 210px;
+      opacity: 0.12;
+    }
+
+    .ribbon-tl {
+      position: absolute;
+      top: -30px;
+      left: -30px;
+      width: 170px;
+      opacity: 0.88;
+    }
+
+    .ribbon-br {
+      position: absolute;
+      bottom: -20px;
+      right: 10px;
+      width: 120px;
+      opacity: 0.72;
+      transform: rotate(180deg) scaleX(-1);
+    }
+
+    .hero-logo {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 22px;
+      z-index: 2;
+    }
+
+    .hero-logo svg { width: 17px; height: 17px; }
+
+    .hero-logo span {
+      font-size: 10.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #555;
+      font-weight: 500;
+    }
+
+    .hero-eyebrow {
+      font-size: 13px;
+      font-weight: 400;
+      color: #555;
+      letter-spacing: 0.03em;
+      margin-bottom: 4px;
+      z-index: 2;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 46px;
+      font-style: italic;
+      font-weight: 700;
+      color: var(--red);
+      line-height: 1.05;
+      text-align: center;
+      z-index: 2;
+      margin-bottom: 20px;
+    }
+
+    .hero-pill {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(255,255,255,0.7);
+      border: 1px solid rgba(192,39,45,0.25);
+      color: var(--red);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      padding: 5px 16px;
+      border-radius: 999px;
+      z-index: 2;
+      margin-bottom: 12px;
+      backdrop-filter: blur(4px);
+    }
+
+    .hero-pill span.dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--red);
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.7); }
+    }
+
+    .hero-sub {
+      font-size: 13px;
+      color: #666;
+      text-align: center;
+      z-index: 2;
+      line-height: 1.65;
+      font-weight: 300;
+      max-width: 300px;
+    }
+
+    /* FORM */
+    .form-wrap {
+      width: 100%;
+      max-width: 600px;
+      background: var(--white);
+      padding: 36px 32px 44px;
+      border-top: 3px solid var(--red);
+    }
+
+    .section-label {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      font-weight: 600;
+      margin-top: 28px;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .section-label:first-child { margin-top: 0; }
+
+    .field { margin-bottom: 16px; }
+
+    .field label {
+      display: block;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="date"],
+    input[type="number"],
+    select {
+      width: 100%;
+      padding: 11px 13px;
+      border: 1.5px solid var(--border);
+      border-radius: 4px;
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: #fafafa;
+      transition: border-color 0.15s, background 0.15s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--red);
+      background: #fff;
+    }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 13px center;
+      background-color: #fafafa;
+      padding-right: 36px;
+      cursor: pointer;
+    }
+
+    .radio-row { display: flex; gap: 10px; }
+
+    .radio-opt { flex: 1; position: relative; }
+
+    .radio-opt input[type="radio"] {
+      position: absolute; opacity: 0; width: 0; height: 0;
+    }
+
+    .radio-opt label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 10px 12px;
+      border: 1.5px solid var(--border);
+      border-radius: 4px;
+      background: #fafafa;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0;
+      text-transform: none;
+      transition: all 0.15s;
+      margin: 0;
+    }
+
+    .radio-opt label::before {
+      content: '';
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 1.5px solid #ccc;
+      background: #fff;
+      flex-shrink: 0;
+      transition: all 0.15s;
+    }
+
+    .radio-opt input:checked + label {
+      border-color: var(--red);
+      color: var(--red);
+      background: #fdf3f3;
+      font-weight: 600;
+    }
+
+    .radio-opt input:checked + label::before {
+      background: var(--red);
+      border-color: var(--red);
+      box-shadow: inset 0 0 0 3px #fff;
+    }
+
+    #campo-lider {
+      display: none;
+      margin-top: 12px;
+      animation: slideDown 0.2s ease;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-5px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 28px;
+      transition: background 0.15s, transform 0.1s;
+    }
+
+    .btn:hover { background: var(--red-dark); }
+    .btn:active { transform: scale(0.99); }
+    .btn:disabled { background: #bbb; cursor: not-allowed; }
+
+    #msg {
+      margin-top: 14px;
+      font-size: 13px;
+      text-align: center;
+      min-height: 20px;
+      font-weight: 500;
+    }
+    #msg.success { color: #2a7a3b; }
+    #msg.error   { color: var(--red); }
+
+    .footer-bar {
+      width: 100%;
+      max-width: 600px;
+      padding: 20px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .footer-bar span { font-size: 11px; color: #aaa; letter-spacing: 0.06em; }
+    .footer-bar .dot { width: 3px; height: 3px; border-radius: 50%; background: #ccc; }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+
+    <svg class="hero-cross" viewBox="0 0 200 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="82" y="0" width="36" height="320" rx="6" fill="#1a1a1a"/>
+      <rect x="0" y="90" width="200" height="36" rx="6" fill="#1a1a1a"/>
+    </svg>
+
+    <svg class="ribbon-tl" viewBox="0 0 170 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="25" cy="10" rx="90" ry="28" fill="#c0272d" transform="rotate(35 25 10)"/>
+      <ellipse cx="55" cy="90" rx="70" ry="22" fill="#9b1f24" transform="rotate(55 55 90)"/>
+      <ellipse cx="10" cy="150" rx="80" ry="20" fill="#c0272d" transform="rotate(28 10 150)"/>
+    </svg>
+
+    <svg class="ribbon-br" viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="80" cy="25" rx="65" ry="22" fill="#c0272d" transform="rotate(-35 80 25)"/>
+      <ellipse cx="55" cy="85" rx="55" ry="18" fill="#9b1f24" transform="rotate(-55 55 85)"/>
+    </svg>
+
+    <div class="hero-logo">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="9.5" stroke="#555" stroke-width="1.4"/>
+        <path d="M12 7v10M7 12h10" stroke="#555" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+      <span>Igreja da Cidade</span>
+    </div>
+
+    <p class="hero-eyebrow">Cadastro de Voluntário</p>
+    <h1 class="hero-title">Quero Servir</h1>
+
+    <div class="hero-pill">
+      <span class="dot"></span>
+      Eklésia — Vagas abertas
+    </div>
+
+    <p class="hero-sub">Preencha os dados abaixo<br>e escolha sua frente de serviço</p>
+  </div>
+
+  <div class="form-wrap">
+
+    <div class="section-label">Dados pessoais</div>
+
+    <div class="field">
+      <label>Nome completo</label>
+      <input type="text" id="nome" placeholder="Seu nome completo" required>
+    </div>
+
+    <div class="field">
+      <label>Data de nascimento</label>
+      <input type="date" id="dataNascimento" required>
+    </div>
+
+    <div class="field">
+      <label>WhatsApp</label>
+      <input type="tel" id="whatsapp" placeholder="(12) 91234-5678" required>
+    </div>
+
+    <div class="section-label">Informações ministeriais</div>
+
+    <div class="field">
+      <label>Qual frente gostaria de servir?</label>
+      <select id="frente" required>
+        <option value="">Selecione uma frente...</option>
+        <option>Capelania Hospitalar / Prisional</option>
+        <option>Ação Social</option>
+        <option>Cidade Sports</option>
+        <option>Evangelismo</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>É líder de GDC?</label>
+      <div class="radio-row">
+        <div class="radio-opt">
+          <input type="radio" name="liderGDC" id="lider-sim" value="Sim" onchange="toggleLider()">
+          <label for="lider-sim">Sim, sou líder</label>
+        </div>
+        <div class="radio-opt">
+          <input type="radio" name="liderGDC" id="lider-nao" value="Não" onchange="toggleLider()" checked>
+          <label for="lider-nao">Não sou líder</label>
+        </div>
+      </div>
+      <div id="campo-lider">
+        <label style="margin-top:12px;">Nome do seu líder de GDC</label>
+        <input type="text" id="nomeLiderGDC" placeholder="Nome do líder">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>N Eklésia</label>
+      <input type="text" id="nEklesia" placeholder="Número Eklésia">
+    </div>
+
+    <div class="field">
+      <label>Ano de batismo</label>
+      <input type="number" id="anoBatismo" placeholder="Ex: 2018" min="1900" max="2099">
+    </div>
+
+    <button class="btn" id="btn-enviar" onclick="enviar()">Quero servir agora</button>
+    <p id="msg"></p>
+
+  </div>
+
+  <div class="footer-bar">
+    <span>Igreja da Cidade</span>
+    <div class="dot"></div>
+    <span>Eklésia</span>
+    <div class="dot"></div>
+    <span>2026</span>
+  </div>
+
+  <script>
+    const URL_SCRIPT = "https://script.google.com/macros/s/AKfycbyZPp0frQl35biHPc5047CPw9TP8ou8izgopvilJjxwp-lCkDPyi_tlH2m-RZXSz2_lBA/exec";
+
+    function toggleLider() {
+      const val = document.querySelector('input[name="liderGDC"]:checked').value;
+      document.getElementById("campo-lider").style.display = val === "Não" ? "block" : "none";
+    }
+
+    async function enviar() {
+      const nome = document.getElementById("nome").value.trim();
+      const frente = document.getElementById("frente").value;
+      const msg = document.getElementById("msg");
+
+      if (!nome || !frente) {
+        msg.textContent = "⚠️ Preencha pelo menos nome e frente de serviço.";
+        msg.className = "error";
+        return;
+      }
+
+      const liderGDC = document.querySelector('input[name="liderGDC"]:checked').value;
+      const btn = document.getElementById("btn-enviar");
+
+      btn.disabled = true;
+      btn.textContent = "Enviando...";
+      msg.textContent = "";
+      msg.className = "";
+
+      const dados = {
+        dataPreenchimento: new Date().toLocaleString("pt-BR"),
+        nome,
+        dataNascimento: document.getElementById("dataNascimento").value,
+        whatsapp: document.getElementById("whatsapp").value,
+        frente,
+        liderGDC,
+        nomeLiderGDC: liderGDC === "Não" ? document.getElementById("nomeLiderGDC").value : "",
+        nEklesia: document.getElementById("nEklesia").value,
+        anoBatismo: document.getElementById("anoBatismo").value
+      };
+
+      try {
+        await fetch(URL_SCRIPT, { method: "POST", body: JSON.stringify(dados) });
+        msg.textContent = "✅ Feito! Seu cadastro foi enviado com sucesso.";
+        msg.className = "success";
+        btn.textContent = "Enviado ✓";
+      } catch (err) {
+        msg.textContent = "❌ Erro ao enviar. Verifique sua conexão e tente novamente.";
+        msg.className = "error";
+        btn.disabled = false;
+        btn.textContent = "Quero servir agora";
+      }
+    }
+  </script>
+</body>
+</html>
